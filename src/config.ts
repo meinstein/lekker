@@ -55,6 +55,8 @@ export const parseConfig = (argv: string[]): Config => {
 
   const outDir = path.normalize(config.outDir);
 
+  // @TODO Don't let src dir be out dir!
+
   if (outDir) {
     console.log(`Sending compiled documents ${outDir}`);
   }

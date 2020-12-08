@@ -1,32 +1,16 @@
 import { JSDOM } from "jsdom";
 
+import { DocumentTree, FragmentTree } from "./tags";
+
 export const domReducer = (dom: JSDOM, fragment: DocumentFragment): JSDOM => {
-  const rootHead = dom.window.document.querySelector("head");
-  /**
-   * META
-   */
-  const fragmentMetas = fragment.querySelectorAll("meta");
+  const doc = new DocumentTree(dom);
+  const frag = new FragmentTree(fragment);
 
-  fragmentMetas.forEach((el) => {
-    rootHead?.appendChild(el);
-  });
+  frag.head.forEach((el) => doc.sanitize(el));
+  frag.body.forEach((el) => doc.sanitize(el));
 
-  /**
-   * MAIN
-   */
-  const fragmentMains = fragment.querySelectorAll("main");
+  frag.normalizedHead.forEach((el) => doc.upsert(el));
+  frag.normalizedBody.forEach((el) => doc.upsert(el));
 
-  if (fragmentMains.length > 1) {
-    // ADD LOG HERE
-    throw new Error("A document can only contain one 'main' element.");
-  }
-
-  if (fragmentMains.length > 0) {
-    const [main] = fragmentMains;
-    const rootBody = dom.window.document.querySelector("body");
-    rootBody?.childNodes.forEach((child) => child.remove());
-    rootBody?.appendChild(main);
-  }
-
-  return dom;
+  return doc.dom;
 };

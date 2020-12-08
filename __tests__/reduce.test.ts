@@ -6,6 +6,7 @@ import { domReducer } from "../src/reduce";
 const rootDocument = oneLine`
   <html>
     <head>
+      <title>Website</title>
     </head>
     <body>
       <main>
@@ -16,27 +17,35 @@ const rootDocument = oneLine`
 `;
 
 const fragmentOne = oneLine`
-  <meta author="foo">
+  <meta name="author" content="foo">
   <main>
-    <p>Goodbye</p>
+    <p>World</p>
+  </main>
+`;
+
+const fragmentTwo = oneLine`
+  <meta name="author" content="bar">
+  <main>
+    <p>Hello World</p>
   </main>
 `;
 
 test("domReducer", () => {
   const dom = new JSDOM(rootDocument);
-  const fragments = [fragmentOne].map(JSDOM.fragment);
+  const fragments = [fragmentOne, fragmentTwo].map(JSDOM.fragment);
   const combinedDom = fragments.reduce(domReducer, dom);
   const serializedDom = combinedDom.serialize();
   expect(serializedDom).toEqual(oneLine`
     <html>
       <head>
-        <meta author="foo">
+        <title>Website</title>
+        <meta name="author" content="bar">
       </head>
       <body>
         <main>
-          <p>Goodbye</p>
+          <p>Hello World</p>
         </main>
       </body>
     </html>
-    `);
+  `);
 });
