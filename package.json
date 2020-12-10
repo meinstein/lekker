@@ -1,12 +1,18 @@
 {
   "name": "lekker",
-  "version": "0.0.1",
-  "description": "Easily generate static artifacts based from a dir tree.",
-  "main": "lib/main.js",
+  "version": "0.0.4",
+  "description": "Easy compose your document tree.",
+  "main": "./lib/main.js",
+  "bin": {
+    "lekker": "./lib/main.js"
+  },
   "scripts": {
+    "prebuild": "npm run clean",
+    "clean": "rm -rf ./lib && rm -rf ./dist",
     "lint": "eslint \"src/**/*\"",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "ISC",

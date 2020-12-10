@@ -6,24 +6,18 @@ Yet another static site generator.
 
 Some static sites just need to be durable and easy to reason about. Rather than build another abstraction, lekker embraces the tried and true: HTML. Express your data via semantic HTML (albeit in fragments) and organize your hierarchy via the file system.
 
-## Install
-
-```
-npm i lekker
-```
-
 ## How To
 
 To build your document tree, simply point lekker at the root document.
 
 ```
-lekker build src/index.html
+npx lekker build src/index.html
 ```
 
 You can pass also pass an `outDir` option. Defaults to `dist`.
 
 ```
-lekker build src/index.html --outDir=public
+npx lekker build src/index.html --outDir=public
 ```
 
 ## Order of Operations
