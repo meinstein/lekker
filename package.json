@@ -2,7 +2,7 @@
   "name": "lekker",
   "version": "0.0.1",
   "description": "Easily generate static artifacts based from a dir tree.",
-  "main": "index.js",
+  "main": "lib/main.js",
   "scripts": {
     "lint": "eslint \"src/**/*\"",
     "build": "tsc",

@@ -14,7 +14,7 @@ npm i lekker
 
 ## How To
 
-To build your document tree, simply point lekker at the root.
+To build your document tree, simply point lekker at the root document.
 
 ```
 lekker build src/index.html
@@ -37,8 +37,9 @@ In doing so, lekker follows HTML best practices. For example, a folded document 
 - `main`
 - `footer`
 
-Therefore, lekker gives priority to last-in-time usage of the above elements. For all other elements, Lekker simply appends them to the DOM. For example,
-when lekker encounters subsequent usage of `<meta>` tags, it will append them to the document's `<head>`.
+Therefore, lekker gives priority to last-in-time usage of the above elements. For all other elements, Lekker simply appends them to the DOM.
+
+For example, when lekker encounters subsequent usage of `<meta>` tags, it will append them to the document's `<head>`.
 
 The order of operations is as follows:
 
