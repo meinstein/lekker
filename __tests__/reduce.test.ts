@@ -4,16 +4,12 @@ import { oneLine } from "./helpers/html";
 import { domReducer } from "../src/reduce";
 
 const rootDocument = oneLine`
-  <html>
-    <head>
-      <title>Website</title>
-    </head>
-    <body>
-      <main>
-        <p>Hello</p>
-      </main>
-    </body>
-  </html>
+  <head>
+    <title>Website</title>
+  </head>
+  <main>
+    <p>Hello</p>
+  </main>
 `;
 
 const fragmentOne = oneLine`

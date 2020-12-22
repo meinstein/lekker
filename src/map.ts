@@ -1,4 +1,4 @@
-import path from "path";
+import { path } from "./utils";
 
 export interface Doc {
   /**
@@ -17,11 +17,15 @@ export interface Doc {
   docs: string[];
 }
 
+export const isDocument = (document: string) => {
+  return path.extname(document) === ".html";
+};
+
 export const isRootDocument = (document: string) => {
   return path.basename(document) === "index.html";
 };
 
-export const getRootDocumentsForFile = (rootDocuments: string[]) => (document: string): string[] => {
+export const getDocumentComposeMap = (rootDocuments: string[]) => (document: string): string[] => {
   const subDocumentsForFile = rootDocuments
     /**
      * Gather all roots to this path.
@@ -44,7 +48,7 @@ export const getRootDocumentsForFile = (rootDocuments: string[]) => (document: s
   return subDocumentsForFile;
 };
 
-export const getOutPathForDocuments = (documents: string[], outDir: string) => {
+export const getOutPathForComposedDocument = (documents: string[], outDir: string) => {
   const rootPath = documents[0];
   const endPath = documents[documents.length - 1];
   // Location of the composed file.

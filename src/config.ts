@@ -1,7 +1,6 @@
 import yargs, { Argv } from "yargs";
-import path from "path";
 
-import fs from "./file";
+import { path, fs, process } from "./utils";
 import { isRootDocument } from "./map";
 
 export interface UserConfig {
@@ -33,10 +32,10 @@ export const parseConfig = (argv: string[]): Config => {
       }
     });
 
-  const rootDoc = path.join(fs.cwd(), path.normalize(config.rootDoc));
+  const rootDoc = path.join(process.cwd(), path.normalize(config.rootDoc));
 
   if (!rootDoc) {
-    console.error(`Root document not specified.`);
+    console.error("Root document not specified.");
     process.exit(1);
   }
 

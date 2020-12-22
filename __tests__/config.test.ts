@@ -1,7 +1,5 @@
-import path from "path";
-
+import { path, fs, process } from "../src/utils";
 import { parseConfig } from "../src/config";
-import fs from "../src/file";
 
 const mockProcessArgv = [
   "/Users/user/.nvm/versions/node/v12.17.0/bin/node",
@@ -16,7 +14,7 @@ const mockedCwd = "/Users/user/foo/lekker";
 
 beforeAll(() => {
   // Mock "process.cwd" before all tests run
-  fs.cwd = jest.fn().mockReturnValue(mockedCwd);
+  process.cwd = jest.fn().mockReturnValue(mockedCwd);
 });
 
 test("rootDoc", () => {

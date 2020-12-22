@@ -2,9 +2,9 @@
   "name": "lekker",
   "version": "0.0.4",
   "description": "Easy compose your document tree.",
-  "main": "./lib/main.js",
+  "main": "./lib/index.js",
   "bin": {
-    "lekker": "./lib/main.js"
+    "lekker": "./lib/ssg.js"
   },
   "scripts": {
     "prebuild": "npm run clean",
@@ -12,6 +12,7 @@
     "lint": "eslint \"src/**/*\"",
     "build": "tsc",
     "test": "jest",
+    "test:watch": "jest --watch",
     "prepublish": "npm run build"
   },
   "author": "",
@@ -37,7 +38,7 @@
   "jest": {
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/__tests__"
+      "<rootDir>/__tests__/"
     ],
     "testMatch": [
       "**/__tests__/**/?(*.)+(spec|test).+(ts|tsx|js)"
